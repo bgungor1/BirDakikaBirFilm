@@ -43,6 +43,10 @@ cd birdakikada-film-tahmini
 npm install
 Geliştirme sunucusunu başlatın:
 npm run dev
+
+
+
+## 🌍 English Version
 Movie Quiz App is a modern and interactive quiz application built with React + Vite.
 Players try to guess the correct movie based on a single clue sentence.
 Includes 60s timer, progress bar, dark/light theme toggle, and instant correct/wrong feedback.
