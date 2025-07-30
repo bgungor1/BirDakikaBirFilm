@@ -26,10 +26,10 @@ Kullanıcılar, verilen film ipuçlarına göre doğru filmi tahmin etmeye çal�
 ## 📸 Ekran Görüntüleri (Screenshots)
 
 ### Light Tema
-![Light Screenshot](screenshots/light-theme.png)
+![Light Screenshot](screenshots/light-theme.png.png)
 
 ### Dark Tema
-![Dark Screenshot](screenshots/dark-theme.png)
+![Dark Screenshot](screenshots/dark-theme.png.png)
 
 ---
 
