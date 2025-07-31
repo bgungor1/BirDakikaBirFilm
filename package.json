@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://bgungor1.github.io/birdakikabirfilm",
+  "homepage": "https://bgungor1.github.io/BirDakikaBirFilm",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
