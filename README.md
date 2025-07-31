@@ -21,6 +21,25 @@ Kullanıcılar, verilen film ipuçlarına göre doğru filmi tahmin etmeye çal�
 - ✅ **Doğru/Yanlış Geri Bildirim**: Seçilen cevaba göre buton renkleri değişir  
 - 📱 **Responsive Tasarım**: Web ve mobil için uyumlu
 
+
+## 🌍 English Version
+
+Movie Quiz App is a modern and interactive quiz application built with React + Vite.
+Players try to guess the correct movie based on a single clue sentence.
+Includes 60s timer, progress bar, dark/light theme toggle, and instant correct/wrong feedback.
+
+Features
+🎥 Randomized movie questions
+
+⏱ 60 seconds per question (auto skip on timeout)
+
+📊 Progress bar to show quiz progress
+
+🌗 Dark/Light theme toggle (saved in localStorage)
+
+✅ Instant feedback (button colors change for correct/wrong answers)
+
+📱 Responsive design for both desktop and mobile
 ---
 
 ## 📸 Ekran Görüntüleri (Screenshots)
@@ -45,29 +64,14 @@ Geliştirme sunucusunu başlatın:
 npm run dev
 
 
-
-## 🌍 English Version
-Movie Quiz App is a modern and interactive quiz application built with React + Vite.
-Players try to guess the correct movie based on a single clue sentence.
-Includes 60s timer, progress bar, dark/light theme toggle, and instant correct/wrong feedback.
-
-Features
-🎥 Randomized movie questions
-
-⏱ 60 seconds per question (auto skip on timeout)
-
-📊 Progress bar to show quiz progress
-
-🌗 Dark/Light theme toggle (saved in localStorage)
-
-✅ Instant feedback (button colors change for correct/wrong answers)
-
-📱 Responsive design for both desktop and mobile
-
 Installation
 git clone https://github.com/username/movie-quiz-app.git
 cd movie-quiz-app
 npm install
 npm run dev
+
+
+
+
 
 
