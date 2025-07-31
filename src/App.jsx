@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { StartScreen, Quiz, Result } from "./components";
-import questionData from "./data/questions"
+import { StartScreen, Quiz, Result, LoadingScreen, ErrorScreen } from "./components";
+import { getQuestions } from "./services/api";
 
 
 
@@ -8,6 +8,9 @@ import questionData from "./data/questions"
 function App() {
   const [screen, setScreen] = useState("start");
   const [score, setScore]  = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [theme, setTheme] = useState(() => {
     // Local storage'dan tema tercihini al, yoksa "light" kullan
     return localStorage.getItem("theme") || "light";
@@ -19,9 +22,32 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    
+  // Soruları API'den yükle
+  const loadQuestions = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const questionsData = await getQuestions(10); // 10 film sorusu
+      setQuestions(questionsData);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  // Quiz başlatıldığında soruları yükle
+  const handleStartQuiz = () => {
+    loadQuestions();
+    setScreen("quiz");
+  };
+
+  // Hata durumunda tekrar dene
+  const handleRetry = () => {
+    loadQuestions();
+  };
+
+  const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"))
   };
   
@@ -35,23 +61,29 @@ function App() {
       </div>
       <div className="flex items-center justify-center min-h-screen text-base sm:text-xl px-4">
         {screen === "start" && (
-          <StartScreen onStart={() => setScreen("quiz")} />
+          <StartScreen onStart={handleStartQuiz} />
         )}
 
         {screen === "quiz" && (
-          <Quiz
-            questions={questionData}
-            onFinish={(finalScore) => {
-              setScore(finalScore);
-              setScreen("result");
-            }}
-          />
+          <>
+            {loading && <LoadingScreen />}
+            {error && <ErrorScreen error={error} onRetry={handleRetry} />}
+            {!loading && !error && questions.length > 0 && (
+              <Quiz
+                questions={questions}
+                onFinish={(finalScore) => {
+                  setScore(finalScore);
+                  setScreen("result");
+                }}
+              />
+            )}
+          </>
         )}
 
         {screen === "result" && (
           <Result 
             score={score}
-            totalQuestions={questionData.length}
+            totalQuestions={questions.length}
             onRestart={() => setScreen("start")}
           />
         )}
