@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import confetti from 'js-confetti';
 
-function Result({score, totalQuestions, onRestart}) {
+function Result({score, totalQuestions, onRestart, onSaveResult}) {
+    const hasSaved = useRef(false);
+
     useEffect(() => {
         // Eğer 5 veya daha fazla doğru cevap varsa confetti patlat
         if (score >= 5) {
@@ -13,6 +15,14 @@ function Result({score, totalQuestions, onRestart}) {
             });
         }
     }, [score]);
+
+    // Sonucu sadece bir kez kaydet
+    useEffect(() => {
+        if (onSaveResult && !hasSaved.current) {
+            onSaveResult(score, totalQuestions);
+            hasSaved.current = true;
+        }
+    }, [score, totalQuestions, onSaveResult]);
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-base-200 px-4">

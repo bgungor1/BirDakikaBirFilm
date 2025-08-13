@@ -48,6 +48,11 @@ function App() {
     loadQuestions();
   };
 
+  // Navbar'dan StartScreen'e geçiş
+  const handleStartFromNavbar = () => {
+    setScreen("quiz");
+  };
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"))
   };
@@ -55,7 +60,7 @@ function App() {
  
   return (
     <div className="min-h-screen bg-base-200">
-      <Navbar />
+      <Navbar onStartQuiz={handleStartFromNavbar} />
       <div className="flex justify-end p-2 sm:p-4">
         <button onClick={toggleTheme} className="btn btn-ghost btn-sm sm:btn-md">
           {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
@@ -87,6 +92,20 @@ function App() {
             score={score}
             totalQuestions={questions.length}
             onRestart={() => setScreen("start")}
+            onSaveResult={(finalScore, totalQuestions) => {
+              // Sonucu localStorage'a kaydet
+              const results = JSON.parse(localStorage.getItem('quizResults') || '[]');
+              const newResult = {
+                id: Date.now(),
+                score: finalScore,
+                total: totalQuestions,
+                percentage: Math.round((finalScore / totalQuestions) * 100),
+                date: new Date().toLocaleDateString('tr-TR'),
+                time: new Date().toLocaleTimeString('tr-TR')
+              };
+              results.push(newResult);
+              localStorage.setItem('quizResults', JSON.stringify(results));
+            }}
           />
         )}
       </div>
