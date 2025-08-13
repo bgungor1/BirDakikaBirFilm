@@ -28,6 +28,36 @@ function Quiz({questions, onFinish}) {
         // Eğer zaten cevap seçilmişse, hiçbir şey yapma
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     const handleNext = useCallback(() => {
         if (currentQuestionIndex + 1 < shuffledQuestions.current.length) {
             setCurrentQuestion(currentQuestionIndex + 1);

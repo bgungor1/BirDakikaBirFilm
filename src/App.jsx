@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StartScreen, Quiz, Result, LoadingScreen, ErrorScreen } from "./components";
+import { StartScreen, Quiz, Result, LoadingScreen, ErrorScreen, Navbar } from "./components";
 import { getQuestions } from "./services/api";
 
 
@@ -15,13 +15,6 @@ function App() {
     // Local storage'dan tema tercihini al, yoksa "light" kullan
     return localStorage.getItem("theme") || "light";
   });
-
-  useEffect(() => {
-    document.querySelector("html").setAttribute("data-theme", theme);
-    // Tema değiştiğinde local storage'a kaydet
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
   // Soruları API'den yükle
   const loadQuestions = async () => {
     setLoading(true);
@@ -35,6 +28,14 @@ function App() {
       setLoading(false);
     }
   };
+
+
+  // Tema değiştiğinde local storage'a kaydet
+  useEffect(() => {
+    document.querySelector("html").setAttribute("data-theme", theme);
+    // Tema değiştiğinde local storage'a kaydet
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Quiz başlatıldığında soruları yükle
   const handleStartQuiz = () => {
@@ -54,6 +55,7 @@ function App() {
  
   return (
     <div className="min-h-screen bg-base-200">
+      <Navbar />
       <div className="flex justify-end p-2 sm:p-4">
         <button onClick={toggleTheme} className="btn btn-ghost btn-sm sm:btn-md">
           {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}

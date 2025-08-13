@@ -1,8 +1,11 @@
 // Open Trivia Database API endpoint'leri
+// API URL YAPISI
 const API_BASE_URL = 'https://opentdb.com/api.php';
 const CATEGORY_FILM = 11; // Film kategorisi
 
 // HTML entity'leri decode et
+
+// HTML entity kısmı
 function decodeHtmlEntities(text) {
   const textarea = document.createElement('textarea');
   textarea.innerHTML = text;
@@ -10,10 +13,13 @@ function decodeHtmlEntities(text) {
 }
 
 // API'den gelen veriyi projemizin formatına dönüştür
+//API Response Validation
 function transformApiData(apiData) {
   if (!apiData.results || apiData.response_code !== 0) {
     throw new Error(`API verisi geçersiz: ${apiData.response_code}`);
   }
+
+  // Veri Dönüştürme ve Seçenek Karıştırma
 
   return apiData.results.map((item) => {
     // Tüm seçenekleri birleştir ve karıştır
@@ -29,7 +35,7 @@ function transformApiData(apiData) {
     };
   });
 }
-
+//5. Fetch URL Yapısı
 // Soru verilerini API'den çek
 export async function getQuestions(limit = 10) {
   try {
@@ -49,7 +55,7 @@ export async function getQuestions(limit = 10) {
     throw error;
   }
 }
-
+// 6. Error Handling
 // Tek bir soru getir (Open Trivia API tek soru desteği yok, bu yüzden tüm soruları çekip filtreliyoruz)
 export async function getQuestion(id) {
   try {
