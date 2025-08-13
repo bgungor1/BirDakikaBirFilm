@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StartScreen, Quiz, Result, LoadingScreen, ErrorScreen, Navbar } from "./components";
+import { StartScreen, Quiz, Result, LoadingScreen, ErrorScreen, Navbar, Footer } from "./components";
 import { getQuestions } from "./services/api";
 
 
@@ -90,7 +90,9 @@ function App() {
           />
         )}
       </div>
+      <Footer />
     </div>
+
   );
 }
 
